@@ -1,0 +1,60 @@
+/* COmponents */
+/* Header */
+#header {
+    background-image: url('./assets/images/header.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 15%;
+}
+
+/* Content */
+
+/* Landing Page */
+#inputDiv {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2rem;
+}
+
+#inputDiv h2 {
+    width: 100%;
+}
+
+#inputDiv button {
+    background-color: #1339A2;
+}
+
+#inputDiv button:disabled,
+#inputDiv button[disabled]{
+  background-color: #cccccc;
+  color: #666666;
+}
+
+#recap {
+    margin: 1rem 0;
+    width: 100%;
+}
+
+#instructionsDiv {
+    margin-top: 5em;
+}
+
+#appInput {
+    width: 90%;
+    height: 5vh;
+}
+
+#infoContainer {
+    width: 100%;
+}
+
+/* Footer */
+#footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    min-height: 20%;
+    background-image: url('./assets/images/footer.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
