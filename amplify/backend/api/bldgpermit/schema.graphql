@@ -1,0 +1,32 @@
+type Account @model {
+  id: ID!
+	applicationNo: String!
+	orNo: String!
+	orDate: String!
+	orAmount: String!
+	postflag: String! #status
+  createdAt: String
+	receiptNo: String!
+	billNo: String!
+	billDate: String!
+  taxpayerName: String!
+  taxpayerAddress: String!
+  controlCode: String!
+  incomeClass: String!
+  fund: String!
+  fundGrp: String!
+  fundSubGrp: String!
+  incomeGrp: String!
+  incomeSubGrp: String!
+  description: String!
+  incomeObject: String!
+  incomeTitle: String!
+  accountCode: String!
+  officeAccountCode: String!
+  blgfCode: String!
+  incomeDescription: String!
+  incomeSubDescription: String!
+  rate: String!
+  formType: String!
+  reference: String!
+}

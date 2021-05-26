@@ -1,0 +1,175 @@
+/* COmponents */
+/* Header */
+#header {
+    background-image: url('./assets/images/header.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 15%;
+}
+
+/* Content */
+
+/* Landing Page */
+#inputDiv {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2rem;
+}
+
+#inputDiv h2 {
+    width: 100%;
+}
+
+#inputDiv button {
+    background-color: #1339A2;
+    margin-top: 1rem;
+}
+
+#inputDiv button:disabled,
+#inputDiv button[disabled]{
+  background-color: #cccccc;
+  color: #666666;
+}
+
+#recap {
+    margin: 1rem 0;
+    width: 100%;
+}
+
+#instructionsDiv {
+    margin-top: 5em;
+}
+
+#appInput {
+    width: 90%;
+    height: 5vh;
+}
+
+/* Information */
+#paymentOptions {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    margin: 1rem;
+}
+#paymentOptions h2{
+    width: 100%;
+}
+#paymentOptions button {
+    margin: 1em;
+    background-color: #1339A2;
+}
+
+#paymentContainer {
+    width: 100%;
+    margin: 1rem;
+}
+
+#infoContainer {
+    width: 80%;
+    margin: 1rem;
+}
+
+/* Pay Online */
+#onlineContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 70%;
+}
+
+#onlineContainer h1 {
+    text-align: center;
+    width: 100%;
+    font-size: 2vw;
+}
+
+#unionbank, #landbank, #gcash, #paymaya {
+    text-align: center;
+}
+
+#unionbank {
+    background: url('./assets/images/ublogo.jpeg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 12vh;
+    cursor: pointer;
+}
+#landbank {
+    background: url('./assets/images/landbanklogo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 7vh;
+    margin-top: 2rem;
+    cursor: pointer;
+}
+#gcash {
+    background: url('./assets/images/gcashlogo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 15vh;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+#paymaya {
+    background: url('./assets/images/paymayalogo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 15vh;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.zoom {
+    transition: transform .4s;
+}
+
+.zoom:hover {
+    transform: scale(1.2);
+}
+
+/* Pay On-Site */
+#onsiteContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#onsiteContainer h1 {
+    text-align: center;
+    width: 100%;
+    font-size: 2vw;
+    margin-top: 5rem;
+}
+
+#onsiteContainer ol > li {
+    font-size: 1.5vw;
+    line-height: 2em;
+}
+
+/* STATUS */
+#paid {
+    color: rgb(53, 223, 53);
+}
+#failed {
+    color: rgb(221, 36, 36);
+}
+#pending {
+    color: rgb(79, 161, 255);
+}
+
+/* Footer */
+#footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    min-height: 20%;
+    background-image: url('./assets/images/footer.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
