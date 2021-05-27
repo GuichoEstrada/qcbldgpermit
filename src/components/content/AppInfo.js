@@ -60,11 +60,11 @@ class AppInfo extends Component {
         direction="row"
         alignItems="center"
         justify="center"
-        style={{ minHeight: '70vh' }}
+        style={{ minHeight: '90vh' }}
         >
 
         <Grid item xs={6}>
-          <div id="paymentContainer">
+          <div id="paymentContainer" className="partial-border">
             <h1>Choose a payment option:</h1>
             <h2>Application No: {accounts.applicationNo}</h2>
             <h2>Amount: ₱{accounts.orAmount}.00</h2>

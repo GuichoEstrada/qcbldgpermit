@@ -14,7 +14,7 @@ class PayOnline extends Component {
             direction="row"
             alignItems="center"
             justify="center"
-            style={{ minHeight: '80vh' }}
+            style={{ minHeight: '90vh' }}
 
             id="optionsContainer"
             >

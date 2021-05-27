@@ -25,21 +25,36 @@ a {
 }
 
 form {
-    width: 80%;
+    width: 100%;
 }
 
 #inputDiv {
+    text-align: center;
     display: flex;
     flex-wrap: wrap;
     margin: 2rem;
+    background: lightgray;
+	padding: 45px 45px 45px 45px;
+	background:
+        linear-gradient(#1339A2, #1339A2) top left / 70px 10px,
+        linear-gradient(#1339A2, #1339A2) left top / 10px 70px,
+        linear-gradient(#1339A2, #1339A2) bottom right / 70px 10px,
+        linear-gradient(#1339A2, #1339A2) right bottom / 10px 70px,
+		linear-gradient(#1339A2, #1339A2) bottom left / 70px 10px,
+		linear-gradient(#1339A2, #1339A2) bottom left / 10px 70px,
+		linear-gradient(#1339A2, #1339A2) top right / 70px 10px,
+		linear-gradient(#1339A2, #1339A2) top right / 10px 70px;
+	background-repeat: no-repeat;
 }
 
 #inputDiv h2 {
     width: 100%;
+    margin-top: 0;
 }
 
 #inputDiv button {
     background-color: #1339A2;
+    margin-top: 1em;
 }
 
 #inputDiv button:disabled,
@@ -71,13 +86,18 @@ li {
 }
 
 #appInput {
-    width: 90%;
+    width: 100%;
     height: 5vh;
 }
+
+::-webkit-input-placeholder {
+    text-align: center;
+  }
 
 #errorMessage {
     color: red;
     display: none;
+    margin-bottom: 0;
 }
 
 /* Information */
@@ -96,11 +116,29 @@ li {
 }
 
 #paymentContainer {
-    width: 100%;
+    width: 70%;
     margin: 1rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.partial-border {
+	flex: 0 0;
+	width: 30%;
+	background: lightgray;
+	padding: 25px;
+	background:
+        linear-gradient(#1339A2, #1339A2) top left / 100px 10px,
+        linear-gradient(#1339A2, #1339A2) left top / 10px 100px,
+        linear-gradient(#1339A2, #1339A2) bottom right / 100px 10px,
+        linear-gradient(#1339A2, #1339A2) right bottom / 10px 100px,
+		linear-gradient(#1339A2, #1339A2) bottom left / 100px 10px,
+		linear-gradient(#1339A2, #1339A2) bottom left / 10px 100px,
+		linear-gradient(#1339A2, #1339A2) top right / 100px 10px,
+		linear-gradient(#1339A2, #1339A2) top right / 10px 100px;
+	background-repeat: no-repeat;
 }
 
 #paymentContainer > h2 {
@@ -131,12 +169,25 @@ li {
     flex-wrap: wrap;
     margin: 0 auto;
     width: 70%;
+    background: lightgray;
+	padding: 25px;
+	background:
+        linear-gradient(#1339A2, #1339A2) top left / 100px 10px,
+        linear-gradient(#1339A2, #1339A2) left top / 10px 100px,
+        linear-gradient(#1339A2, #1339A2) bottom right / 100px 10px,
+        linear-gradient(#1339A2, #1339A2) right bottom / 10px 100px,
+		linear-gradient(#1339A2, #1339A2) bottom left / 100px 10px,
+		linear-gradient(#1339A2, #1339A2) bottom left / 10px 100px,
+		linear-gradient(#1339A2, #1339A2) top right / 100px 10px,
+		linear-gradient(#1339A2, #1339A2) top right / 10px 100px;
+	background-repeat: no-repeat;
 }
 
 #onlineContainer h1 {
     text-align: center;
     width: 100%;
     font-size: 2vw;
+    margin-bottom: 1em;
 }
 
 #unionbank, #landbank, #gcash, #paymaya {
@@ -189,16 +240,30 @@ li {
 
 /* Pay On-Site */
 #onsiteContainer {
+    width: 80%;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    background: lightgray;
+	padding: 0 25px 25px 25px;
+	background:
+        linear-gradient(#1339A2, #1339A2) top left / 100px 10px,
+        linear-gradient(#1339A2, #1339A2) left top / 10px 100px,
+        linear-gradient(#1339A2, #1339A2) bottom right / 100px 10px,
+        linear-gradient(#1339A2, #1339A2) right bottom / 10px 100px,
+		linear-gradient(#1339A2, #1339A2) bottom left / 100px 10px,
+		linear-gradient(#1339A2, #1339A2) bottom left / 10px 100px,
+		linear-gradient(#1339A2, #1339A2) top right / 100px 10px,
+		linear-gradient(#1339A2, #1339A2) top right / 10px 100px;
+	background-repeat: no-repeat;
 }
 
 #onsiteContainer h1 {
     text-align: center;
     width: 100%;
     font-size: 2vw;
-    margin-top: 5rem;
+    margin-top: 2rem;
 }
 
 #onsiteContainer ol > li {
@@ -219,12 +284,24 @@ li {
 
 /* STATUS */
 
-#onsiteContainer {
+#statusContainer {
     text-align: center;
     width: 50%;
     margin: 0 auto;
     line-height: 3em;
     font-size: 1.3vw;
+    background: lightgray;
+	padding: 25px;
+	background:
+        linear-gradient(#1339A2, #1339A2) top left / 100px 10px,
+        linear-gradient(#1339A2, #1339A2) left top / 10px 100px,
+        linear-gradient(#1339A2, #1339A2) bottom right / 100px 10px,
+        linear-gradient(#1339A2, #1339A2) right bottom / 10px 100px,
+		linear-gradient(#1339A2, #1339A2) bottom left / 100px 10px,
+		linear-gradient(#1339A2, #1339A2) bottom left / 10px 100px,
+		linear-gradient(#1339A2, #1339A2) top right / 100px 10px,
+		linear-gradient(#1339A2, #1339A2) top right / 10px 100px;
+	background-repeat: no-repeat;
 }
 #paid {
     color: rgb(53, 223, 53);

@@ -51,7 +51,7 @@ class StatusPage extends Component {
             id="optionsContainer"
             >
                 <Grid item xs={12}>
-                    <div id="onsiteContainer">
+                    <div id="statusContainer">
                         <h1>Payment Status: <span id="status">{status.postflag}</span></h1>
                         <h3>Note:<br></br> It will take a while to process your payment.<br></br>Please check your payment status again after a few business days.</h3>
                     </div>
