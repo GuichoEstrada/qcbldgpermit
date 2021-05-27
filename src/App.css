@@ -1,4 +1,13 @@
-/* COmponents */
+/* General */
+* {
+    font-family: 'Roboto';
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Components */
 /* Header */
 #header {
     background-image: url('./assets/images/header.png');
@@ -10,6 +19,15 @@
 /* Content */
 
 /* Landing Page */
+#landingPage {
+    position: fixed;
+    top: 10%;
+}
+
+form {
+    width: 80%;
+}
+
 #inputDiv {
     display: flex;
     flex-wrap: wrap;
@@ -22,7 +40,6 @@
 
 #inputDiv button {
     background-color: #1339A2;
-    margin-top: 1rem;
 }
 
 #inputDiv button:disabled,
@@ -36,13 +53,31 @@
     width: 100%;
 }
 
-#instructionsDiv {
-    margin-top: 5em;
+.instructionsContainer {
+    margin-top: 3em;
+}
+
+.instructionsDiv {
+    width: 90%;
+}
+
+.instructionsDiv > h2 {
+    font-size: 1.5vw;
+}
+
+li {
+    line-height: 1.5em;
+    font-size: 1vw;
 }
 
 #appInput {
     width: 90%;
     height: 5vh;
+}
+
+#errorMessage {
+    color: red;
+    display: none;
 }
 
 /* Information */
@@ -63,11 +98,30 @@
 #paymentContainer {
     width: 100%;
     margin: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#paymentContainer > h2 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#payOnlineBtn, #payOnsiteBtn{
+    text-decoration: none;
 }
 
 #infoContainer {
     width: 80%;
-    margin: 1rem;
+    margin: 20% auto;
+}
+
+#tableContainer {
+    overflow-y: scroll;
+    max-height: 50vh;
 }
 
 /* Pay Online */
@@ -152,7 +206,26 @@
     line-height: 2em;
 }
 
+#btnContainer {
+    margin: 0 auto;
+}
+
+#checkStatusBtn {
+    background-color: #1339A2;
+    color: #fff;
+    display: block;
+    margin: 0 auto;
+}
+
 /* STATUS */
+
+#onsiteContainer {
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    line-height: 3em;
+    font-size: 1.3vw;
+}
 #paid {
     color: rgb(53, 223, 53);
 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Paper from '@material-ui/core/Paper';
+
+// UI
 import Grid from '@material-ui/core/Grid';
+
 
 class PayOnline extends Component {
 

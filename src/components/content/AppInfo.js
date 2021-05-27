@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+// UI
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
@@ -7,15 +10,15 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 
-import { getAccount } from '../../graphql/queries';
+// GRAPHQL | AMPLIFY
+import {listAccounts} from  "../../graphql/queries";
 import { API, graphqlOperation } from 'aws-amplify';
 
 class AppInfo extends Component {
 
   state = {
-    accounts: []
+    accounts: {}
   }
 
   componentDidMount = async () => {
@@ -23,23 +26,33 @@ class AppInfo extends Component {
   }
 
   getAccounts = async () => {
-    const queryString = this.props.match.params.id;
-        console.log(queryString);
-
-    const input = {
-      id: queryString
-    };
-
-    const result = await API.graphql(graphqlOperation(getAccount, input))
-
-    this.setState({accounts: result.data.getAccount})
-
-    console.log(result)
+    const result = await API.graphql(graphqlOperation(listAccounts, {
+        filter: {
+            applicationNo: {
+                eq: this.props.location.state.search
+            }
+        }
+    }));
+    this.setState({accounts: result.data.listAccounts.items[0]})
+    console.log(this.state.accounts)
+    
+    const status = this.state.accounts.postflag;
+    if (status === "PAID") {
+      let statusClr = document.getElementById("status");
+      statusClr.style.color = "rgb(81 195 32)";
+    } else if (status === "FAILED"){
+      let statusClr = document.getElementById("status");
+      statusClr.style.color = "#CB3930";
+    } else {
+      let statusClr = document.getElementById("status");
+      statusClr.style.color = "#1D3A9C";
+    }
   }
 
   render() {
-    const { classes } = this.props;
+
     const { accounts } = this.state;
+
     return (
       <Grid
         container
@@ -54,37 +67,97 @@ class AppInfo extends Component {
           <div id="paymentContainer">
             <h1>Choose a payment option:</h1>
             <h2>Application No: {accounts.applicationNo}</h2>
-            <h2>Amount: ₱{accounts.orAmount}</h2>
-            <h2>Status: {accounts.postFlag}</h2>
+            <h2>Amount: ₱{accounts.orAmount}.00</h2>
+            <h2>Status: <span id="status">&nbsp;{accounts.postflag}</span></h2>
             <div id="paymentOptions">
-              <Button variant="contained" color="primary" >Pay Online</Button>
-              <Button variant="contained" color="primary" >Pay On-Site</Button>
+              <Link to="/payonline"><Button variant="contained" color="primary" >Pay Online</Button></Link>
+              <Link to={{ 
+                pathname: "/payonsite", 
+                state: {search: this.state.accounts} 
+                }}>
+                <Button variant="contained" color="primary">Pay Onsite</Button>
+              </Link>
+              
             </div>
           </div>
         </Grid>
 
         <Grid item xs={6}>
           <div id="infoContainer">
-            <TableContainer component={Paper}>
+            <TableContainer>
               <Table aria-label="simple table">
+
                 <TableHead>
-                  <TableRow>
-                    <TableCell>Category</TableCell>
-                    <TableCell>Value</TableCell>
-                  </TableRow>
+                  <TableCell><b>Category</b></TableCell>
+                  <TableCell><b>Value</b></TableCell>
                 </TableHead>
+
                 <TableBody>
-                  {accounts.map((account) => (
-                    <TableRow key={account.applicationNo}>
-                      <TableCell component="th" scope="row">
-                        {account.applicationNo}
-                      </TableCell>
-                      <TableCell component="th" scope="row">
-                        {account.taxpayerName}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      Application No.
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {accounts.applicationNo}
+                    </TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      Taxpayer Name
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {accounts.taxpayerName}
+                    </TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      Income Description
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {accounts.incomeDescription}
+                    </TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      Income Object
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {accounts.incomeObject}
+                    </TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      Income Subdescription
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {accounts.incomeSubDescription}
+                    </TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      orAmount
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      ₱{accounts.orAmount}.00
+                    </TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      Status
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {accounts.postflag}
+                    </TableCell>
+                  </TableRow>
+              
                 </TableBody>
+
               </Table>
             </TableContainer>
           </div>
@@ -96,11 +169,3 @@ class AppInfo extends Component {
 }
 
 export default AppInfo;
-
-  // useEffect(()=> {
-  //   Axios.get('http://localhost:3306/api/get').then((response)=> {
-  //     setAppInfo(response.data)
-  //   })
-  // }, [])
-
-  // const [appInfo, setAppInfo] = useState([]);

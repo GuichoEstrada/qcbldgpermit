@@ -5,7 +5,31 @@ import Button from '@material-ui/core/Button';
 
 import { Link } from 'react-router-dom';
 
+// GRAPHQL | AMPLIFY
+import {listAccounts} from  "../../graphql/queries";
+import { API, graphqlOperation } from 'aws-amplify';
+
 class PayOnSite extends Component {
+
+    state = {
+        accounts: {}
+      }
+    
+      componentDidMount = async () => {
+        this.getAccounts()
+      }
+    
+      getAccounts = async () => {
+        const result = await API.graphql(graphqlOperation(listAccounts, {
+            filter: {
+                applicationNo: {
+                    eq: this.props.location.state.search
+                }
+            }
+        }));
+        this.setState({accounts: result.data.listAccounts.items[0]})
+        console.log(this.state.accounts)
+      }
 
     render() {
         return (
@@ -15,7 +39,7 @@ class PayOnSite extends Component {
             direction="row"
             alignItems="center"
             justify="center"
-            style={{ minHeight: '70vh' }}
+            style={{ minHeight: '80vh' }}
             >
                 <Grid item xs={12}>
                     <div id="onsiteContainer">
@@ -28,7 +52,14 @@ class PayOnSite extends Component {
                             <li>After checking your account details, choose "Pay On-Site".</li>
                             <li>You will be instructed on how to pay your remaining balance manually.</li>
                         </ol>
-                        <Link to="/status" className="btn btn-primary" variant="contained" color="primary">Check Payment Status</Link>
+                    </div>
+                    <div id="btnContainer">
+                    <Link to={{ 
+                        pathname: "/status", 
+                        state: {search: this.state.accounts} 
+                        }}>
+                        <Button variant="contained" id="checkStatusBtn">CHECK PAYMENT STATUS</Button>
+                      </Link>
                     </div>
                 </Grid>   
             </Grid>

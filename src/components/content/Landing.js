@@ -1,32 +1,70 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
+import {listAccounts} from  "../../graphql/queries";
+import { API, graphqlOperation } from 'aws-amplify';
+
 class Landing extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {
+            redirect: false,
+            value: '',
+            checkAppNo: '',
+            existingNo: '',
+            errorMessage: 'Please input a valid application number.'
+        };
     
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount = async () => {
+        this.checkAccounts()
       }
     
-      handleChange(event) {
+    handleChange(event) {
         this.setState({value: event.target.value}, ()=> {
             console.log(this.state.value)
         });
-      }
-    
-      handleSubmit(event) {
-        this.setState({value: event.target.value});
+    }
+
+    handleSubmit= async (event) => {
+        console.log(this.state.existingNo)
+        if ((this.state.existingNo).indexOf(this.state.value) !== -1){
+            this.setState({redirect:true})
+        } else {
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.style.display = "block";
+        }
         event.preventDefault();
-      } 
+    } 
+
+    checkAccounts = async () => {
+        const existingAppNos = [];
+        
+        const result = await API.graphql(graphqlOperation(listAccounts));
+
+        this.setState({checkAppNo: result.data.listAccounts.items});
+        const checkAppNo = this.state.checkAppNo;
+        checkAppNo.forEach(function (i) {
+            existingAppNos.push(i.applicationNo); 
+        })
+        this.setState({existingNo: existingAppNos})
+    }
 
     render() {
+        if(this.state.redirect === true) {
+            return <Redirect to={{ 
+                pathname: "/information", 
+                state: {search: this.state.value} 
+                }} />
+        }
         return (
             <Grid
+            id="landingPage"
             container
             spacing={0}
             direction="row"
@@ -38,16 +76,17 @@ class Landing extends React.Component {
                 <Grid item xs={6}>
                     <div id="inputDiv">
                         <h2>Please enter your building permit application number:</h2>
-                        <form onSubmit={this.handleSubmit}>
+                        <form>
                             <label>
                             <input type="text" id="appInput" value={this.state.value} onChange={this.handleChange}placeholder="Enter Application No." />
                             </label>
-                            <Link to="/information" type="submit" value="Search" onClick={() => this.props.handleChange(this.props.value)}>Search</Link>
+                            <p id="errorMessage">{this.state.errorMessage}</p>
+                            <Button variant="contained" color="primary" onClick={this.handleSubmit}>Search</Button>
                         </form>
                     </div>
                 </Grid>
-                <Grid item xs={6}>
-                    <div id="instructionsDiv">
+                <Grid item xs={6} className="instructionsContainer">
+                    <div className="instructionsDiv">
                         <h2>Instructions for Building Permit Online Payment</h2>
                         <ol>
                             <li>Type in your application number.</li>
@@ -58,7 +97,7 @@ class Landing extends React.Component {
                             <li>You will be directed to the payment options page and choose between Unionbank, Landbank, G-Cash or PayMaya.</li>
                         </ol>
                     </div>
-                    <div>
+                    <div className="instructionsDiv">
                         <h2>Instructions for Building Permit On-Site Payment</h2>
                         <ol>
                             <li>Type in your application number.</li>
