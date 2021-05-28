@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 
 // UI
 import Grid from '@material-ui/core/Grid';
-
+import PayamayaModal from './PaymayaModal';
+import GCashModal from './GCashModal';
+import UnionbankModal from './UnionBankModal';
+import LandbankModal from './LandbankModal';
 
 class PayOnline extends Component {
 
@@ -21,10 +24,10 @@ class PayOnline extends Component {
                 <Grid item xs={12}>
                     <div id="onlineContainer">
                         <h1>Choose a payment option:</h1>
-                        <Grid item xs={6} id="unionbank" className="zoom"></Grid>
-                        <Grid item xs={6} id="landbank" className="zoom"></Grid>
-                        <Grid item xs={6} id="gcash" className="zoom"></Grid>
-                        <Grid item xs={6} id="paymaya" className="zoom"></Grid>
+                        <Grid item xs={6} className="zoom bankgrid"><UnionbankModal /></Grid>
+                        <Grid item xs={6} className="zoom bankgrid"><LandbankModal /></Grid>
+                        <Grid item xs={6} className="zoom bankgrid"><GCashModal /></Grid>
+                        <Grid item xs={6} className="zoom bankgrid"><PayamayaModal /></Grid>
                     </div>
                 </Grid>   
             </Grid>
