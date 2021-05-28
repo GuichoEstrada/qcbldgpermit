@@ -34,15 +34,27 @@ class AppInfo extends Component {
         }
     }));
     this.setState({accounts: result.data.listAccounts.items[0]})
+    
+    localStorage.setItem('payStatus', JSON.stringify(this.state.accounts.postflag))
+    console.log(localStorage)
     console.log(this.state.accounts)
     
     const status = this.state.accounts.postflag;
+    let p = document.createElement('p');
+    p.setAttribute("id","failedpay");
+    let failText = document.createTextNode("*Please call 122 or email helpdesk@quezoncitygov.ph about failed payment.");
+    let paymentOptions = document.getElementById("paymentOptions");
+    let summary = document.getElementById("summary")
     if (status === "PAID") {
       let statusClr = document.getElementById("status");
       statusClr.style.color = "rgb(81 195 32)";
+      paymentOptions.style.display = "none";
     } else if (status === "FAILED"){
       let statusClr = document.getElementById("status");
       statusClr.style.color = "#CB3930";
+      p.appendChild(failText);
+      paymentOptions.style.display = "none";
+      summary.appendChild(p);
     } else {
       let statusClr = document.getElementById("status");
       statusClr.style.color = "#1D3A9C";
@@ -63,7 +75,7 @@ class AppInfo extends Component {
         style={{ minHeight: '90vh' }}
         >
 
-        <Grid item xs={6}>
+        <Grid item xs={6} id="summary">
           <div id="paymentContainer" className="partial-border">
             <h1>Choose a payment option:</h1>
             <h2>Application No: {accounts.applicationNo}</h2>
@@ -104,7 +116,7 @@ class AppInfo extends Component {
 
                   <TableRow>
                     <TableCell component="th" scope="row">
-                      Taxpayer Name
+                      Building Owner
                     </TableCell>
                     <TableCell component="th" scope="row">
                       {accounts.taxpayerName}
@@ -113,7 +125,7 @@ class AppInfo extends Component {
 
                   <TableRow>
                     <TableCell component="th" scope="row">
-                      Income Description
+                      Breakdown of Fees
                     </TableCell>
                     <TableCell component="th" scope="row">
                       {accounts.incomeDescription}
@@ -122,7 +134,7 @@ class AppInfo extends Component {
 
                   <TableRow>
                     <TableCell component="th" scope="row">
-                      Income Object
+                      
                     </TableCell>
                     <TableCell component="th" scope="row">
                       {accounts.incomeObject}
@@ -131,7 +143,7 @@ class AppInfo extends Component {
 
                   <TableRow>
                     <TableCell component="th" scope="row">
-                      Income Subdescription
+                      
                     </TableCell>
                     <TableCell component="th" scope="row">
                       {accounts.incomeSubDescription}
@@ -140,7 +152,7 @@ class AppInfo extends Component {
 
                   <TableRow>
                     <TableCell component="th" scope="row">
-                      orAmount
+                      Amount
                     </TableCell>
                     <TableCell component="th" scope="row">
                       ₱{accounts.orAmount}.00
